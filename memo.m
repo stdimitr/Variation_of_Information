@@ -13,21 +13,26 @@
 %1)create 2 random connectivity graphs
 nodes=30;
 graph1=rand(30,30);
-
-for i=1:nodes
-    graph1(i,i)=0;
-end
-
 graph2=rand(30,30);
 
 for i=1:nodes
+    graph1(i,i)=0; 
     graph2(i,i)=0;
 end
 
-%2)run modularity_dir() for each graph seperately
-[Ci1 Q1]=modularity_dir(graph1);
 
-[Ci2 Q1]=modularity_dir(graph2);
+
+for k=1:nodes
+   for l=(k+1):nodes
+       graph1(l,k)=graph1(k,l);
+       graph2(l,k)=graph2(k,l);
+   end
+end
+
+%2)run dominant sets algorithm for each graph seperately
+[groups,no_groups,cost_function,f_ini,Q]=iterative_dominant_set_extraction(graph1);
+
+[groups,no_groups,cost_function,f_ini,Q]=iterative_dominant_set_extraction(graph2);
 
 %3)run vi to get the distance between two clusterings
-[VI_value,NVI, adjvi] = vi(Ci1',Ci2');
+[VI_value,NVI, adjvi] = vi(groups1',groups2');
