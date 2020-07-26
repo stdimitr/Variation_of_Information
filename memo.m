@@ -30,9 +30,9 @@ for k=1:nodes
 end
 
 %2)run dominant sets algorithm for each graph seperately
-[groups,no_groups,cost_function,f_ini,Q]=iterative_dominant_set_extraction(graph1);
+[groups1,no_groups,cost_function,f_ini,Q]=iterative_dominant_set_extraction(graph1);
 
-[groups,no_groups,cost_function,f_ini,Q]=iterative_dominant_set_extraction(graph2);
+[groups2,no_groups,cost_function,f_ini,Q]=iterative_dominant_set_extraction(graph2);
 
 %3)run vi to get the distance between two clusterings
 [VI_value,NVI, adjvi] = vi(groups1',groups2');
