@@ -35,4 +35,4 @@ end
 [groups2,no_groups,cost_function,f_ini,Q]=iterative_dominant_set_extraction(graph2);
 
 %3)run vi to get the distance between two clusterings
-[VI_value,NVI, adjvi] = vi(groups1',groups2');
+[VIn,MIn] = variation_information(groups1',groups2');
